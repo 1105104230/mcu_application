@@ -1,0 +1,59 @@
+{% extends 'default/base.html' %}
+{% block content %}
+<main role="main">
+  <!-- Main jumbotron for a primary marketing message or call to action -->
+  <div class="jumbotron">
+
+    {% for message in messages%}
+    <div class="alert alert-success" role="alert">
+      {{ message }}
+    </div>
+    {% endfor %}
+    <div class="container">
+      <h1 class="display-3">歡迎來到IOT bird house網站</h1>
+      <p>In this website,you don't need 24 hours to take care or oversee your pet</p>
+      <p><a class="btn btn-primary btn-lg" href="#" role="button">click me &raquo;</a></p>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Example row of columns -->
+    <div class="row">
+      <div id="result">
+        <script type="text/javascript">
+            var xhr = new XMLHttpRequest();
+            var onloadHandle = function() {
+            var data = JSON.parse(JSON.parse(xhr.responseText).data);
+            var result = document.getElementById('result');
+            var strHTML = '';
+        data.forEach(function(value) {
+        strHTML += '<div class="col-md-4"><h4>' + value.fields.title  + '</h4><a href="/recipes/' + value.pk + '" class="thumbnail">' + '<img src="' + value.fields.image_path + '">' + '</a></div>';
+        });
+        result.innerHTML = strHTML;
+        };
+        xhr.open('GET', '/api/recipes', true);
+        xhr.send();
+      
+        xhr.onload = onloadHandle;
+        </script>
+      
+      </div>
+    </div>
+    <hr>
+  </div> <!-- /container -->
+  
+  
+  {% endblock %}
+
+
+
+
+
+ <!-- {% for recipe in recipes %} 
+      <div class="col-md-4">
+        <h4>{{ recipe.title }}</h4>
+          <img src="{{ recipe.image_path }}" alt="">
+        </a>
+        <p>{{ recipe.created_at | date:"Y / m / d" }}</p>
+      </div>
+      {% endfor %} -->
