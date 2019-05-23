@@ -1,0 +1,28 @@
+{% extends 'default/base.html' %}
+{% block content %}
+  	<br>
+  	<br>
+  	<br>
+  	<br>
+  	<br>
+
+  <div class="container">
+    <!-- Example row of columns -->
+    <h1>Sign up</h1>
+    <form method="POST" action="/signup/post">
+    	<label>user_name</label>
+    	<input class="form-control" type="text" name="username" placeholder="username">
+    	<label>Please enter user_email</label>
+    	<input class="form-control" type="text" name="email" placeholder="email">
+    	<label>Please enter password</label>
+    	<input class="form-control" type="text" name="password" placeholder="password">
+      <hr>
+      {% csrf_token %}
+    	<button class="btn-primary">submit and send out</button>
+    </form>
+    <hr>
+
+  </div> <!-- /container -->
+</body>
+</html>
+  {% endblock %}

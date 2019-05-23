@@ -1,0 +1,28 @@
+{% extends 'default/base.html' %}
+{% block content %}
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+  <div class="container">
+    <!-- Example row of columns -->
+    <h1>Iot物聯網</h1>
+    <form method="POST" action="/recipes/create/post">
+      <label>Bird name</label>
+      <input class="form-control" type="text" name="title" placeholder="title">
+      <label>Please enter bird image</label>
+      <input class="form-control" type="text" name="image_path" placeholder="image_path">
+      <label>Please enter bird description</label>
+      <textarea class="form-control" type="text" name="description" placeholder="description"></textarea>
+      <hr>
+      {% csrf_token %}
+      <button class="btn-primary">submit and send out</button>
+    </form>
+    <hr>
+
+  </div> <!-- /container -->
+</body>
+</html>
+  {% endblock %}

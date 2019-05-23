@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bird.iot</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="   https://fonts.googleapis.com/css?family=Lobster">
+    <!-- <link rel="stylesheet" type="text/css" href=""> -->
+    <link href="https://fonts.googleapis.com/css?family=ZCOOL+KuaiLe" rel="stylesheet">
+    <!-- 字體 -->
+    <link href="/assets/css/.min.css?v=2.0.5" rel="stylesheet" />
+    <!-- Google-Font 中文字體-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
+
+    <style type="text/css">
+    body,h1,h3{
+        font-family: 'Merriweather', serif ,italic;
+    }
+    .iccc{
+        width: 20px;
+        height: 20px;
+        color: red;
+    }
+    .iccc2{
+        width: 20px;
+        height: 20px;
+        color: yellow;
+    }
+    .iccc3{
+        width: 20px;
+        height: 20px;
+        color: #4d9900;
+    }
+    body{
+        background-color: #ccffcc;
+    }
+    h4{
+        font-style:italic;
+        color: #660033;
+    }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    {% if user.is_authenticated %}
+    <nav class="navbar navbar-dark bg-dark">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><i class="fas fa-tint iccc2"></i>Drinking Water</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"><i class="fas fa-water iccc2"></i>Drinking Fountain</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false"><i class="fab fa-apple iccc"></i>Eating Food</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#fooood" role="tab" aria-controls="fooood" aria-selected="false"><i class="fas fa-apple-alt iccc"></i>Eating Fountain</a>
+          </li>
+        </ul>
+        <ul class="nav justify-content-end">
+         <li class="nav-item">
+           <a class="nav-link active" href="https://birdiot3.herokuapp.com">Home</a>
+         </li>
+         <li class="nav-item">
+           <a class="nav-link" href="https://github.com/1105104230/mcu_application/tree/master/opencook2">Git</a>
+         </li>
+         <li class="nav-item">
+           <a class="nav-link" href="https://birdiot3.herokuapp.com/recipes/create/crew">Regain</a>
+         </li>
+         <li class="nav-item">
+           <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+         </li>
+        </ul>
+    </nav>
+    <h1 style="color: #00004d"> Bird.iot Instant information </h1>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <section>
+                <button type="button" class="btn btn-primary"><a href="https://api.thingspeak.com/channels/600831/fields/2.json?">ckick</a></button><br>
+                    <h4>MCU will be discharged at 15 (%)<br>
+                        Sensor : Water_Sensor-643165173(A5-3)</h4>
+                        {% for i in water_last4 %}
+                            <h2>This hour: {{ i.field2 }} %</h2> 
+                        {% endfor %}
+                        {% for i in water_last3 %}
+                            <h3>An hour ago: {{ i.field2 }} %</h3> 
+                        {% endfor %}
+                        {% for i in water_last2 %}
+                            <h3>2 hours ago: {{ i.field2 }} %</h3>
+                        {% endfor %}
+                        {% for i in water_last1 %}
+                            <h3>3 hours ago: {{ i.field2 }} %</h3>
+                        {% endfor %}
+            </section>
+        </div>
+        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <section>
+                <button type="button" class="btn btn-primary"><a href="https://api.thingspeak.com/channels/600831/fields/3.json?">ckick</a> </button>
+                    <h4>When the value is 0, please manually replace it.<br>
+                        Sensor : T125</h4>
+                        {% for i in big_water_last4 %}
+                            <h2>This hour: {{ i.field3 }}</h2> 
+                        {% endfor %}
+                        {% for i in big_water_last3 %}
+                            <h3>An hour ago: {{ i.field3 }}</h3> 
+                        {% endfor %}
+                        {% for i in big_water_last2 %}
+                            <h3>2 hours ago: {{ i.field3 }}</h3>
+                        {% endfor %}
+                        {% for i in big_water_last1 %}
+                            <h3>3 hours ago: {{ i.field3 }}</h3>
+                        {% endfor %}
+            </section>
+        </div>
+        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+            <section>
+                <button type="button" class="btn btn-primary"><a href="https://api.thingspeak.com/channels/600831/fields/1.json?">ckick</a> </button>
+                    <h4>MCU will be discharged at 40 (g) <br>
+                        Sensor : KSM127</h4>
+                        {% for i in food_last4 %}
+                            <h2>This hour: {{ i.field1 }} (g)</h2> 
+                        {% endfor %}
+                        {% for i in food_last3 %}
+                            <h3>An hour ago: {{ i.field1 }} (g)</h3> 
+                        {% endfor %}
+                        {% for i in food_last2 %}
+                            <h3>2 hours ago: {{ i.field1 }} (g)</h3>
+                        {% endfor %}
+                        {% for i in food_last1 %}
+                            <h3>3 hours ago: {{ i.field1 }} (g)</h3>
+                        {% endfor %}
+            </section>
+        </div>
+        <div class="tab-pane fade" id="fooood" role="tabpanel" aria-labelledby="contact-tab">
+            <section>
+                <button type="button" class="btn btn-primary"><a href="https://api.thingspeak.com/channels/600831/fields/4.json?">ckick</a> </button>
+                    <h4>When the value is 0, please manually replace it.<br>
+                        Sensor : GL5539</h4>
+                        {% for i in big_food_last4 %}
+                            <h2>This hour: {{ i.field4 }}</h2> 
+                        {% endfor %}
+                        {% for i in big_food_last3 %}
+                            <h3>An hour ago: {{ i.field4 }}</h3> 
+                        {% endfor %}
+                        {% for i in big_food_last2 %}
+                            <h3>2 hours ago: {{ i.field4 }}</h3>
+                        {% endfor %}
+                        {% for i in big_food_last1 %}
+                            <h3>3 hours ago: {{ i.field4 }}</h3>
+                        {% endfor %}
+            </section>
+        </div>
+        {% else %}
+        <h1>請先去登入喔</h1>
+        <h3><a href="https://birdiot3.herokuapp.com">點我跳轉回首頁</a></h3>
+        {% endif %}
+    </div>
+    
+
+    <footer>
+    <p>&copy; 2019 Bird.cool, Inc.</p>
+    </footer>
+ </div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

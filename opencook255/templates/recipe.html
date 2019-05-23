@@ -1,0 +1,28 @@
+{% extends 'default/base.html' %}
+{% block content %}
+  	<br>
+  	<br>
+  	<br>
+  	<br>
+  	<br>
+
+  <div class="container main-container">
+
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home </a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ recipe.title }}</li>
+      </ol>
+    </nav>
+
+    <div>
+      <h4> {{recipe.title}} </h4>
+      <img src=" {{recipe.image_path}} ">
+      <p> {{recipe.description}} </p>
+    </div>
+
+  </div> <!-- /container -->
+  
+</body>
+</html>
+  {% endblock %}
