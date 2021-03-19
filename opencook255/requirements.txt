@@ -20,7 +20,7 @@ dj-static==0.0.6
 Django==2.0.4
 django-allauth==0.35.0
 django-rest-swagger==2.2.0
-djangorestframework==3.9.4
+djangorestframework==3.11.2
 Flask==1.0.2
 Flask-RESTful==0.3.6
 future==0.16.0
